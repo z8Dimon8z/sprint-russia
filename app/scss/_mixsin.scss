@@ -1,0 +1,45 @@
+// обрезание текста Иногда возникает необходимость не показывать текст целиком, обрезая его на определенной строке. Это можно сделать и средствами css, миксин поможет автоматизировать этот процесс.
+@mixin line-clamp($lines: 1) {
+  @if $lines <=1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @else {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+  }
+}
+
+// Использование миксина 
+// .class {
+//   font-size: 14px;
+//   @include line-clamp(3);
+// }
+
+// используем этот миксин для создания масштабируемых элементов(обычно изображения/картинки заднего фона), чтобы поддерживать соотношение.
+
+// @mixin responsive-ratio($x, $y, $pseudo: false) {
+//   $padding: unquote(($y / $x) * 100 + '%');
+
+//   @if $pseudo {
+//     &::before {
+//       @include pseudo($pos: relative);
+//       width: 100%;
+//       padding-top: $padding;
+//     }
+//   }
+
+//   @else {
+//     padding-top: $padding;
+//   }
+// }
+
+// Использование миксина 
+// .class {
+//   @include responsive-ratio(16, 9);
+// }
